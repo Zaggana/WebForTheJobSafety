@@ -2,9 +2,7 @@ package com.safetyjoblet;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import org.web4thejob.orm.AbstractHibernateEntity;
@@ -19,6 +17,11 @@ public class InspectionsAuditsAttachments extends AbstractHibernateEntity {
 	private String inadaName;
 	@MediaHolder
 	private byte[] inadaAttachment;
+
+
+    @OneToOne(targetEntity=InspectionsAuditsAttachmentsPreview.class)
+    @JoinColumn(name="INADA_CODE")
+    private InspectionsAuditsAttachmentsPreview inspectionsAuditsAttachmentsPreview;
 
 	public int getInadaCode() {
 		return this.inadaCode;
@@ -52,7 +55,18 @@ public class InspectionsAuditsAttachments extends AbstractHibernateEntity {
 		this.inadaAttachment = inadaAttachment;
 	}
 
-	@Override
+    public InspectionsAuditsAttachmentsPreview getInspectionsAuditsAttachmentsPreview() {
+        return inspectionsAuditsAttachmentsPreview;
+    }
+
+    public void setInspectionsAuditsAttachmentsPreview(
+            InspectionsAuditsAttachmentsPreview inspectionsAuditsAttachmentsPreview)
+    {
+        this.inspectionsAuditsAttachmentsPreview = inspectionsAuditsAttachmentsPreview;
+    }
+
+
+    @Override
 	public Serializable getIdentifierValue() {
 		return inadaCode;
 	}

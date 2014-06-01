@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 16, 2014 6:10:00 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.safetyjoblet.InspectionsAuditsAttachmentsPreview" table="INSPECTIONS_AUDITS_ATTACHMENTS_PREVIEW" schema="dbo" catalog="WebForTheJobSafety">
+        <meta attribute="friendlyName" inherit="false">InspectionsAuditsAttachmentsPreview</meta>
+        <id name="inadaCode" type="int">
+            <meta attribute="friendlyName" inherit="false">InadaCode</meta>
+            <meta attribute="index" inherit="false">1</meta>
+            <column name="INADA_CODE" />
+            <generator class="identity" />
+        </id>
+        <property name="inadaAttachment" type="materialized_blob">
+            <meta attribute="friendlyName" inherit="false">InadaAttachment</meta>
+            <meta attribute="index" inherit="false">2</meta>
+            <column name="INADA_ATTACHMENT" />
+        </property>
+        <one-to-one name="InspectionsAuditsAttachments" class="com.safetyjoblet.InspectionsAuditsAttachments"></one-to-one>
+
+    </class>
+</hibernate-mapping>

@@ -26,5 +26,7 @@
             <meta attribute="index" inherit="false">4</meta>
             <column name="INADA_ATTACHMENT" />
         </property>
+        <one-to-one name="InspectionsAuditsAttachmentsPreview" class="com.safetyjoblet.VesselsCorrespondencesAttachmentsPreview"></one-to-one>
+
     </class>
 </hibernate-mapping>
