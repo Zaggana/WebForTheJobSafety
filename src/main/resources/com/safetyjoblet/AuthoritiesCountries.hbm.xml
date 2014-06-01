@@ -22,6 +22,11 @@
             <meta attribute="index" inherit="false">3</meta>
             <column name="ATHCNT_DESC" length="250" not-null="true" />
         </property>
+        <property name="inspectionAuditTypesFake" type="integer" insert="false" update="false">
+            <meta attribute="friendlyName" inherit="false">InspectionAuditTypesFake</meta>
+            <meta attribute="index" inherit="false">6</meta>
+            <column name="INADT_CODE_FAKE" />
+        </property>
         <property name="atchcntIsAuthority" type="boolean">
             <meta attribute="friendlyName" inherit="false">AtchcntIsAuthority</meta>
             <meta attribute="index" inherit="false">4</meta>

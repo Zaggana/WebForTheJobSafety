@@ -26,6 +26,8 @@ public class AuthoritiesCountries extends AbstractHibernateEntity {
     @ManyToOne (targetEntity = InspectionAuditTypes.class )
     @JoinColumn(name="INADT_CODE")
 	private InspectionAuditTypes inspectionAuditTypes;
+
+    private transient int inspectionAuditTypesFake;
 	@NotBlank
 	@Column(name="athcnt_Desc")
 	private String athcntDesc;
@@ -124,7 +126,16 @@ public class AuthoritiesCountries extends AbstractHibernateEntity {
 		this.inspectionsAuditsesForAthcntCodeCountry = inspectionsAuditsesForAthcntCodeCountry;
 	}
 
-	@Override
+    public void setInspectionAuditTypesFake(int inspectionAuditTypesFake) {
+        this.inspectionAuditTypesFake = inspectionAuditTypesFake;
+    }
+
+    public int getInspectionAuditTypesFake()
+    {
+        return inspectionAuditTypesFake;
+    }
+
+    @Override
 	public Serializable getIdentifierValue() {
 		return athcntCode;
 	}

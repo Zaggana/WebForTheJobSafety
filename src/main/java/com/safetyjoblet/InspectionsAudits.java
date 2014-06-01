@@ -72,6 +72,7 @@ public class InspectionsAudits extends AbstractHibernateEntity {
             InspectionAuditDescriptions inspectionAuditDescriptions) {
 
         this.inspectionAuditDescriptions = inspectionAuditDescriptions;
+        setAuthoritiesCountriesByAthcntCodeAuthority(null);
         setInspectionAuditTypes(null);
         setDirty("inspectionAuditDescriptions");
     }
@@ -93,6 +94,7 @@ public class InspectionsAudits extends AbstractHibernateEntity {
 
     public void setInspectionAuditKinds(InspectionAuditKinds inspectionAuditKinds) {
         this.inspectionAuditKinds = inspectionAuditKinds;
+        setAuthoritiesCountriesByAthcntCodeAuthority(null);
         setInspectionAuditTypes(null);
         setInspectionAuditDescriptions(null);
         setDirty("inspectionAuditKinds");
@@ -122,6 +124,7 @@ public class InspectionsAudits extends AbstractHibernateEntity {
     public void setInspectionAuditTypes(
             InspectionAuditTypes inspectionAuditTypes) {
         this.inspectionAuditTypes = inspectionAuditTypes;
+        setDirty("inspectionAuditTypes");
     }
 
     public Integer getInadId() {

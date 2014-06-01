@@ -13,6 +13,9 @@ import org.web4thejob.web.panel.MutablePanel;
 import org.web4thejob.web.zbox.EntityDropdownBox;
 import org.zkoss.zk.ui.util.Clients;
 
+import java.lang.reflect.Array;
+import java.util.*;
+
 /**
  * Created by lena on 7/5/2014.
  */
@@ -90,6 +93,26 @@ public class DefaultInspectionsAuditsPanel extends DefaultMutableEntityViewPanel
                     EntityDropdownBox dropdownBox = (EntityDropdownBox) getBoundComponent(ContextUtil
                             .getMRS().getPropertyPath(InspectionsAudits.class,
                                     new Path("inspectionAuditTypes")));
+                    dropdownBox.setLookupQuery(query);
+                    dropdownBox.reset();
+
+                }
+
+                if (args != null && args[0].equals("inspectionAuditTypes")) {
+
+                    Query query = ContextUtil.getEntityFactory().buildQuery(AuthoritiesCountries.class);
+                    List<Integer> inspectionAuditTypeValues = new ArrayList<Integer>();
+                    if(((InspectionsAudits) getTargetEntity()).getInspectionAuditTypes()!=null)
+                        inspectionAuditTypeValues.add(((InspectionsAudits) getTargetEntity()).getInspectionAuditTypes().getInadtCode());
+                    inspectionAuditTypeValues.add(-1);
+
+                    query.addCriterion(new Path("inspectionAuditTypesFake"), Condition.IN, inspectionAuditTypeValues);
+                    query.addOrderBy(new Path("atchcntIsAuthority"), true);
+                    query.addOrderBy(new Path("athcntDesc"));
+
+                    EntityDropdownBox dropdownBox = (EntityDropdownBox) getBoundComponent(ContextUtil
+                            .getMRS().getPropertyPath(InspectionsAudits.class,
+                                    new Path("authoritiesCountriesByAthcntCodeAuthority")));
                     dropdownBox.setLookupQuery(query);
                     dropdownBox.reset();
 
