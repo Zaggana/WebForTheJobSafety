@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 16, 2014 6:10:00 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.safetyjoblet.ManagingCompaniesPerformanceHistory" table="MANAGING_COMPANIES_PERFORMANCE_HISTORY" schema="dbo" catalog="WebForTheJobSafety">
+        <meta attribute="friendlyName" inherit="false">ManagingCompaniesPerformanceHistory</meta>
+        <id name="mgcphCode" type="int">
+            <meta attribute="friendlyName" inherit="false">MgcphCode</meta>
+            <meta attribute="index" inherit="false">1</meta>
+            <column name="MGCPH_CODE" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="managingCompanies" class="com.safetyjoblet.ManagingCompanies" fetch="select">
+            <meta attribute="friendlyName" inherit="false">ManagingCompanies</meta>
+            <meta attribute="index" inherit="false">2</meta>
+            <column name="ASSET_CODE" not-null="true" />
+        </many-to-one>
+        <many-to-one name="managingCompaniesPerformanceValues" class="com.safetyjoblet.ManagingCompaniesPerformanceValues" fetch="select">
+            <meta attribute="friendlyName" inherit="false">ManagingCompaniesPerformanceValues</meta>
+            <meta attribute="index" inherit="false">3</meta>
+            <column name="MGCPV_CODE" not-null="true" />
+        </many-to-one>
+        <property name="mgcphDescription" type="string">
+            <meta attribute="friendlyName" inherit="false">MgcphDescription</meta>
+            <meta attribute="index" inherit="false">4</meta>
+            <column name="MGCPH_DESCRIPTION" length="100" />
+        </property>
+        <property name="mgcphDate" type="timestamp">
+            <meta attribute="friendlyName" inherit="false">MgcphDate</meta>
+            <meta attribute="index" inherit="false">5</meta>
+            <column name="MGCPH_DATE" length="23" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

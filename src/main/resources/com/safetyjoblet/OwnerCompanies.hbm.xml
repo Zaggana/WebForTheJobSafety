@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 16, 2014 6:10:00 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.safetyjoblet.OwnerCompanies" table="OWNER_COMPANIES" schema="dbo" catalog="WebForTheJobSafety">
+        <meta attribute="friendlyName" inherit="false">OwnerCompanies</meta>
+        <id name="owncCode" type="int">
+            <meta attribute="friendlyName" inherit="false">OwncCode</meta>
+            <meta attribute="index" inherit="false">1</meta>
+            <column name="OWNC_CODE" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="managingCompanies" class="com.safetyjoblet.ManagingCompanies" fetch="select">
+            <meta attribute="friendlyName" inherit="false">ManagingCompanies</meta>
+            <meta attribute="index" inherit="false">2</meta>
+            <column name="ASSET_CODE" not-null="true" />
+        </many-to-one>
+        <property name="owncDesc" type="string">
+            <meta attribute="friendlyName" inherit="false">OwncDesc</meta>
+            <meta attribute="index" inherit="false">3</meta>
+            <column name="OWNC_DESC" length="50" not-null="true" />
+        </property>
+        <property name="owncAddress" type="string">
+            <meta attribute="friendlyName" inherit="false">OwncAddress</meta>
+            <meta attribute="index" inherit="false">4</meta>
+            <column name="OWNC_ADDRESS" />
+        </property>
+        <set name="vesselses" table="VESSELS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="OWNC_CODE" not-null="true" />
+            </key>
+            <one-to-many class="com.safetyjoblet.Vessels" />
+        </set>
+    </class>
+</hibernate-mapping>

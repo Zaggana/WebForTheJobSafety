@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 16, 2014 6:10:00 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.safetyjoblet.VesselsRiskProfileHistory" table="VESSELS_RISK_PROFILE_HISTORY" schema="dbo" catalog="WebForTheJobSafety">
+        <meta attribute="friendlyName" inherit="false">VesselsRiskProfileHistory</meta>
+        <id name="vrphCode" type="int">
+            <meta attribute="friendlyName" inherit="false">VrphCode</meta>
+            <meta attribute="index" inherit="false">1</meta>
+            <column name="VRPH_CODE" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="vessels" class="com.safetyjoblet.Vessels" fetch="select">
+            <meta attribute="friendlyName" inherit="false">Vessels</meta>
+            <meta attribute="index" inherit="false">2</meta>
+            <column name="ASSET_CODE" not-null="true" />
+        </many-to-one>
+        <many-to-one name="vesselsRiskProfileValues" class="com.safetyjoblet.VesselsRiskProfileValues" fetch="select">
+            <meta attribute="friendlyName" inherit="false">VesselsRiskProfileValues</meta>
+            <meta attribute="index" inherit="false">3</meta>
+            <column name="VRPV_CODE" not-null="true" />
+        </many-to-one>
+        <property name="vrphDescription" type="string">
+            <meta attribute="friendlyName" inherit="false">VrphDescription</meta>
+            <meta attribute="index" inherit="false">4</meta>
+            <column name="VRPH_DESCRIPTION" length="100" />
+        </property>
+        <property name="vrphDate" type="timestamp">
+            <meta attribute="friendlyName" inherit="false">VrphDate</meta>
+            <meta attribute="index" inherit="false">5</meta>
+            <column name="VRPH_DATE" length="23" />
+        </property>
+    </class>
+</hibernate-mapping>

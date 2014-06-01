@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 16, 2014 6:10:00 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.safetyjoblet.Ports" table="PORTS" schema="dbo" catalog="WebForTheJobSafety">
+        <meta attribute="friendlyName" inherit="false">Ports</meta>
+        <id name="portCode" type="int">
+            <meta attribute="friendlyName" inherit="false">PortCode</meta>
+            <meta attribute="index" inherit="false">1</meta>
+            <column name="PORT_CODE" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="authoritiesCountries" class="com.safetyjoblet.AuthoritiesCountries" fetch="select">
+            <meta attribute="friendlyName" inherit="false">AuthoritiesCountries</meta>
+            <meta attribute="index" inherit="false">2</meta>
+            <column name="ATHCNT_CODE" not-null="true" />
+        </many-to-one>
+        <property name="portDesc" type="string">
+            <meta attribute="friendlyName" inherit="false">PortDesc</meta>
+            <meta attribute="index" inherit="false">3</meta>
+            <column name="PORT_DESC" length="50" not-null="true" />
+        </property>
+        <set name="inspectionsAuditses" table="INSPECTIONS_AUDITS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="PORT_CODE" not-null="true" />
+            </key>
+            <one-to-many class="com.safetyjoblet.InspectionsAudits" />
+        </set>
+    </class>
+</hibernate-mapping>

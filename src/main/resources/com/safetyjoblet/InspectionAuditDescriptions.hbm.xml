@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 16, 2014 6:10:00 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.safetyjoblet.InspectionAuditDescriptions" table="INSPECTION_AUDIT_DESCRIPTIONS" schema="dbo" catalog="WebForTheJobSafety">
+        <meta attribute="friendlyName" inherit="false">InspectionAuditDescriptions</meta>
+        <cache usage="read-write"/>
+        <id name="inaddCode" type="int">
+            <meta attribute="friendlyName" inherit="false">InaddCode</meta>
+            <meta attribute="index" inherit="false">1</meta>
+            <column name="INADD_CODE" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="inspectionAuditKinds" class="com.safetyjoblet.InspectionAuditKinds" fetch="select">
+            <meta attribute="friendlyName" inherit="false">InspectionAuditKinds</meta>
+            <meta attribute="index" inherit="false">2</meta>
+            <column name="INADK_CODE" />
+        </many-to-one>
+        <property name="inaddDesc" type="string">
+            <meta attribute="friendlyName" inherit="false">InaddDesc</meta>
+            <meta attribute="index" inherit="false">3</meta>
+            <column name="INADD_DESC" length="50" not-null="true" />
+        </property>
+        <set name="inspectionAuditTypeses" table="INSPECTION_AUDIT_TYPES" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="INADD_CODE" />
+            </key>
+            <one-to-many class="com.safetyjoblet.InspectionAuditTypes" />
+        </set>
+        <set name="inspectionsAuditses" table="INSPECTIONS_AUDITS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="INADD_CODE" />
+            </key>
+            <one-to-many class="com.safetyjoblet.InspectionsAudits" />
+        </set>
+    </class>
+</hibernate-mapping>

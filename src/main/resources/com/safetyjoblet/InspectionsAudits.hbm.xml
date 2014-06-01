@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 16, 2014 6:10:00 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.safetyjoblet.InspectionsAudits" table="INSPECTIONS_AUDITS" schema="dbo" catalog="WebForTheJobSafety">
+        <meta attribute="friendlyName" inherit="false">InspectionsAudits</meta>
+        <id name="inadCode" type="int">
+            <meta attribute="friendlyName" inherit="false">InadCode</meta>
+            <meta attribute="index" inherit="false">1</meta>
+            <column name="INAD_CODE" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="assets" class="com.safetyjoblet.Assets" fetch="select">
+            <meta attribute="friendlyName" inherit="false">Assets</meta>
+            <meta attribute="index" inherit="false">2</meta>
+            <column name="ASSET_CODE" not-null="true" />
+        </many-to-one>
+        <many-to-one name="inspectionAuditDescriptions" class="com.safetyjoblet.InspectionAuditDescriptions" fetch="select">
+            <meta attribute="friendlyName" inherit="false">InspectionAuditDescriptions</meta>
+            <meta attribute="index" inherit="false">3</meta>
+            <column name="INADD_CODE" />
+        </many-to-one>
+        <many-to-one name="authoritiesCountriesByAthcntCodeCountry" class="com.safetyjoblet.AuthoritiesCountries" fetch="select">
+            <meta attribute="friendlyName" inherit="false">AuthoritiesCountriesByAthcntCodeCountry</meta>
+            <meta attribute="index" inherit="false">4</meta>
+            <column name="ATHCNT_CODE_COUNTRY" not-null="true" />
+        </many-to-one>
+        <many-to-one name="inspectionAuditKinds" class="com.safetyjoblet.InspectionAuditKinds" fetch="select">
+            <meta attribute="friendlyName" inherit="false">InspectionAuditKinds</meta>
+            <meta attribute="index" inherit="false">5</meta>
+            <column name="INADK_CODE" />
+        </many-to-one>
+        <many-to-one name="ports" class="com.safetyjoblet.Ports" fetch="select">
+            <meta attribute="friendlyName" inherit="false">Ports</meta>
+            <meta attribute="index" inherit="false">6</meta>
+            <column name="PORT_CODE" not-null="true" />
+        </many-to-one>
+        <many-to-one name="authoritiesCountriesByAthcntCodeAuthority" class="com.safetyjoblet.AuthoritiesCountries" fetch="select">
+            <meta attribute="friendlyName" inherit="false">AuthoritiesCountriesByAthcntCodeAuthority</meta>
+            <meta attribute="index" inherit="false">7</meta>
+            <column name="ATHCNT_CODE_AUTHORITY" />
+        </many-to-one>
+        <many-to-one name="inspectionAuditTypes" class="com.safetyjoblet.InspectionAuditTypes" fetch="select">
+            <meta attribute="friendlyName" inherit="false">InspectionAuditTypes</meta>
+            <meta attribute="index" inherit="false">8</meta>
+            <column name="INADT_CODE" />
+        </many-to-one>
+        <property name="inadId" type="int">
+            <meta attribute="friendlyName" inherit="false">InadId</meta>
+            <meta attribute="index" inherit="false">9</meta>
+            <column name="INAD_ID" not-null="true" />
+        </property>
+        <property name="inadDate" type="timestamp">
+            <meta attribute="friendlyName" inherit="false">InadDate</meta>
+            <meta attribute="index" inherit="false">10</meta>
+            <column name="INAD_DATE" length="23" not-null="true" />
+        </property>
+        <property name="inadObservations" type="string">
+            <meta attribute="friendlyName" inherit="false">InadObservations</meta>
+            <meta attribute="index" inherit="false">11</meta>
+            <column name="INAD_OBSERVATIONS" />
+        </property>
+        <set name="inspectionsAuditsAttachmentses" table="INSPECTIONS_AUDITS_ATTACHMENTS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="INAD_CODE" not-null="true" />
+            </key>
+            <one-to-many class="com.safetyjoblet.InspectionsAuditsAttachments" />
+        </set>
+        <set name="inspectionsAuditsDeficiencieses" table="INSPECTIONS_AUDITS_DEFICIENCIES" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="INAD_CODE" not-null="true" />
+            </key>
+            <one-to-many class="com.safetyjoblet.InspectionsAuditsDeficiencies" />
+        </set>
+    </class>
+</hibernate-mapping>

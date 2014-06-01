@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 16, 2014 6:10:00 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.safetyjoblet.Assets" table="ASSETS" schema="dbo" catalog="WebForTheJobSafety">
+        <meta attribute="friendlyName" inherit="false">Assets</meta>
+        <id name="assetCode" type="int">
+            <meta attribute="friendlyName" inherit="false">AssetCode</meta>
+            <meta attribute="index" inherit="false">1</meta>
+            <column name="ASSET_CODE"/>
+            <generator class="identity"/>
+        </id>
+        <property name="assetName" type="string">
+            <meta attribute="friendlyName" inherit="false">AssetName</meta>
+            <meta attribute="index" inherit="false">2</meta>
+            <column name="ASSET_NAME" length="250" not-null="true"/>
+        </property>
+        <one-to-one name="vessels" class="com.safetyjoblet.Vessels"></one-to-one>
+        <set name="inspectionsAuditses" table="INSPECTIONS_AUDITS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ASSET_CODE" not-null="true"/>
+            </key>
+            <one-to-many class="com.safetyjoblet.InspectionsAudits"/>
+        </set>
+        <one-to-one name="managingCompanies" class="com.safetyjoblet.ManagingCompanies"></one-to-one>
+        <joined-subclass name="com.safetyjoblet.Vessels" table="VESSELS" schema="dbo" catalog="WebForTheJobSafety">
+            <meta attribute="friendlyName" inherit="false">Vessels</meta>
+            <key column="ASSET_CODE"></key>
+            <many-to-one name="ownerCompanies" class="com.safetyjoblet.OwnerCompanies" fetch="select">
+                <meta attribute="friendlyName" inherit="false">OwnerCompanies</meta>
+                <meta attribute="index" inherit="false">2</meta>
+                <column name="OWNC_CODE" not-null="true"/>
+            </many-to-one>
+            <one-to-one name="assets" class="com.safetyjoblet.Assets" constrained="true"></one-to-one>
+            <many-to-one name="vesselTypes" class="com.safetyjoblet.VesselTypes" fetch="select">
+                <meta attribute="friendlyName" inherit="false">VesselTypes</meta>
+                <meta attribute="index" inherit="false">4</meta>
+                <column name="VSTP_CODE" not-null="true"/>
+            </many-to-one>
+            <many-to-one name="authoritiesCountries" class="com.safetyjoblet.AuthoritiesCountries" fetch="select">
+                <meta attribute="friendlyName" inherit="false">AuthoritiesCountries</meta>
+                <meta attribute="index" inherit="false">5</meta>
+                <column name="ATHCNT_CODE"/>
+            </many-to-one>
+            <property name="vessImoNumber" type="string">
+                <meta attribute="friendlyName" inherit="false">VessImoNumber</meta>
+                <meta attribute="index" inherit="false">6</meta>
+                <column name="VESS_IMO_NUMBER" length="50" not-null="true" unique="true"/>
+            </property>
+            <property name="vessDwt" type="big_decimal">
+                <meta attribute="friendlyName" inherit="false">VessDwt</meta>
+                <meta attribute="index" inherit="false">7</meta>
+                <column name="VESS_DWT" scale="4"/>
+            </property>
+            <property name="vessBuilt" type="timestamp">
+                <meta attribute="friendlyName" inherit="false">VessBuilt</meta>
+                <meta attribute="index" inherit="false">8</meta>
+                <column name="VESS_BUILT" length="23"/>
+            </property>
+            <property name="vessYard" type="string">
+                <meta attribute="friendlyName" inherit="false">VessYard</meta>
+                <meta attribute="index" inherit="false">9</meta>
+                <column name="VESS_YARD" length="250"/>
+            </property>
+            <property name="vessIsSold" type="java.lang.Boolean">
+                <meta attribute="friendlyName" inherit="false">VessIsSold</meta>
+                <meta attribute="index" inherit="false">10</meta>
+                <column name="VESS_IS_SOLD"/>
+            </property>
+            <one-to-one name="VesselsLastRiskProfile" class="com.safetyjoblet.VesselsLastRiskProfile"></one-to-one>
+
+            <set name="vesselsRiskProfileHistories" table="VESSELS_RISK_PROFILE_HISTORY" inverse="true" lazy="true"
+                 fetch="select">
+                <key>
+                    <column name="ASSET_CODE" not-null="true"/>
+                </key>
+                <one-to-many class="com.safetyjoblet.VesselsRiskProfileHistory"/>
+            </set>
+            <set name="vesselsCorrespondenceses" table="VESSELS_CORRESPONDENCES" inverse="true" lazy="true"
+                 fetch="select">
+                <key>
+                    <column name="ASSET_CODE" not-null="true"/>
+                </key>
+                <one-to-many class="com.safetyjoblet.VesselsCorrespondences"/>
+
+            </set>
+        </joined-subclass>
+        <joined-subclass name="com.safetyjoblet.ManagingCompanies" table="MANAGING_COMPANIES" schema="dbo"
+                         catalog="WebForTheJobSafety">
+            <meta attribute="friendlyName" inherit="false">ManagingCompanies</meta>
+            <key column="ASSET_CODE"></key>
+            <property name="mngcImoNumber" type="string">
+                <meta attribute="friendlyName" inherit="false">MngcImoNumber</meta>
+                <meta attribute="index" inherit="false">3</meta>
+                <column name="MNGC_IMO_NUMBER" length="50" not-null="true" unique="true"/>
+            </property>
+            <property name="mngcAddress" type="string">
+                <meta attribute="friendlyName" inherit="false">MngcAddress</meta>
+                <meta attribute="index" inherit="false">4</meta>
+                <column name="MNGC_ADDRESS"/>
+            </property>
+            <one-to-one name="managingCompaniesLastPerformance"
+                        class="com.safetyjoblet.ManagingCompaniesLastPerformanceValue"></one-to-one>
+
+            <one-to-one name="assets" class="com.safetyjoblet.Assets" constrained="true"></one-to-one>
+            <set name="managingCompaniesPerformanceHistories" table="MANAGING_COMPANIES_PERFORMANCE_HISTORY"
+                 inverse="true" lazy="true" fetch="select">
+                <key>
+                    <column name="ASSET_CODE" not-null="true"/>
+                </key>
+                <one-to-many class="com.safetyjoblet.ManagingCompaniesPerformanceHistory"/>
+            </set>
+            <set name="ownerCompanieses" table="OWNER_COMPANIES" inverse="true" lazy="true" fetch="select">
+                <key>
+                    <column name="ASSET_CODE" not-null="true"/>
+                </key>
+                <one-to-many class="com.safetyjoblet.OwnerCompanies"/>
+            </set>
+        </joined-subclass>
+    </class>
+</hibernate-mapping>

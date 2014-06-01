@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 16, 2014 6:10:00 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.safetyjoblet.VesselsCorrespondencesAttachmentsPreview" table="VESSELS_CORRESPONDENCES_ATTACHMENTS_PREVIEW" schema="dbo" catalog="WebForTheJobSafety">
+        <meta attribute="friendlyName" inherit="false">VesselsCorrespondencesAttachmentsPreview</meta>
+        <id name="vcraCode" type="int">
+            <meta attribute="friendlyName" inherit="false">VcraCode</meta>
+            <meta attribute="index" inherit="false">1</meta>
+            <column name="VCRA_CODE" />
+            <generator class="identity" />
+        </id>
+        <property name="vcraAttachmentPreview" type="materialized_blob">
+            <meta attribute="friendlyName" inherit="false">VcraAttachment</meta>
+            <meta attribute="index" inherit="false">2</meta>
+            <column name="VCRA_ATTACHMENT" not-null="true" />
+        </property>
+        <one-to-one name="VesselsCorrespondencesAttachments" class="com.safetyjoblet.VesselsCorrespondencesAttachments"></one-to-one>
+
+    </class>
+</hibernate-mapping>

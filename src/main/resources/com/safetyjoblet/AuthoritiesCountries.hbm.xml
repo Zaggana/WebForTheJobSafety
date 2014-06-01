@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 16, 2014 6:10:00 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.safetyjoblet.AuthoritiesCountries" table="AUTHORITIES_COUNTRIES" schema="dbo" catalog="WebForTheJobSafety">
+	    <meta attribute="friendlyName" inherit="false">AuthoritiesCountries</meta>
+    	<cache usage="read-write"/>    
+        <id name="athcntCode" type="int">
+            <meta attribute="friendlyName" inherit="false">AthcntCode</meta>
+            <meta attribute="index" inherit="false">1</meta>
+            <column name="ATHCNT_CODE" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="inspectionAuditTypes" class="com.safetyjoblet.InspectionAuditTypes" fetch="select">
+            <meta attribute="friendlyName" inherit="false">InspectionAuditTypes</meta>
+            <meta attribute="index" inherit="false">2</meta>
+            <column name="INADT_CODE" />
+        </many-to-one>
+        <property name="athcntDesc" type="string">
+            <meta attribute="friendlyName" inherit="false">AthcntDesc</meta>
+            <meta attribute="index" inherit="false">3</meta>
+            <column name="ATHCNT_DESC" length="250" not-null="true" />
+        </property>
+        <property name="atchcntIsAuthority" type="boolean">
+            <meta attribute="friendlyName" inherit="false">AtchcntIsAuthority</meta>
+            <meta attribute="index" inherit="false">4</meta>
+            <column name="ATCHCNT_IS_AUTHORITY" not-null="true" />
+        </property>
+        <property name="atchcntActive" type="boolean">
+            <meta attribute="friendlyName" inherit="false">AtchcntActive</meta>
+            <meta attribute="index" inherit="false">5</meta>
+            <column name="ATCHCNT_ACTIVE" not-null="true" />
+        </property>
+        <set name="portses" table="PORTS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ATHCNT_CODE" not-null="true" />
+            </key>
+            <one-to-many class="com.safetyjoblet.Ports" />
+        </set>
+        <set name="vesselses" table="VESSELS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ATHCNT_CODE" />
+            </key>
+            <one-to-many class="com.safetyjoblet.Vessels" />
+        </set>
+        <set name="inspectionsAuditsesForAthcntCodeAuthority" table="INSPECTIONS_AUDITS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ATHCNT_CODE_AUTHORITY" />
+            </key>
+            <one-to-many class="com.safetyjoblet.InspectionsAudits" />
+        </set>
+        <set name="inspectionsAuditsesForAthcntCodeCountry" table="INSPECTIONS_AUDITS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ATHCNT_CODE_COUNTRY" not-null="true" />
+            </key>
+            <one-to-many class="com.safetyjoblet.InspectionsAudits" />
+        </set>
+    </class>
+</hibernate-mapping>

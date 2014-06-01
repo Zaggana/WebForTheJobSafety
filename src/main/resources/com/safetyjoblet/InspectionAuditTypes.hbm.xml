@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 16, 2014 6:10:00 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.safetyjoblet.InspectionAuditTypes" table="INSPECTION_AUDIT_TYPES" schema="dbo" catalog="WebForTheJobSafety">
+        <meta attribute="friendlyName" inherit="false">InspectionAuditTypes</meta>
+        <id name="inadtCode" type="int">
+            <meta attribute="friendlyName" inherit="false">InadtCode</meta>
+            <meta attribute="index" inherit="false">1</meta>
+            <column name="INADT_CODE" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="inspectionAuditDescriptions" class="com.safetyjoblet.InspectionAuditDescriptions" fetch="select">
+            <meta attribute="friendlyName" inherit="false">InspectionAuditDescriptions</meta>
+            <meta attribute="index" inherit="false">2</meta>
+            <column name="INADD_CODE" />
+        </many-to-one>
+        <property name="inadtDesc" type="string">
+            <meta attribute="friendlyName" inherit="false">InadtDesc</meta>
+            <meta attribute="index" inherit="false">3</meta>
+            <column name="INADT_DESC" length="50" not-null="true" />
+        </property>
+        <set name="authoritiesCountrieses" table="AUTHORITIES_COUNTRIES" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="INADT_CODE" />
+            </key>
+            <one-to-many class="com.safetyjoblet.AuthoritiesCountries" />
+        </set>
+        <set name="inspectionsAuditses" table="INSPECTIONS_AUDITS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="INADT_CODE" />
+            </key>
+            <one-to-many class="com.safetyjoblet.InspectionsAudits" />
+        </set>
+    </class>
+</hibernate-mapping>

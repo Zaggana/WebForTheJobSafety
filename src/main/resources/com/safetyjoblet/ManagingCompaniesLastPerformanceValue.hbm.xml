@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 24, 2014 11:26:20 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.safetyjoblet.ManagingCompaniesLastPerformanceValue" table="MANAGING_COMPANIES_LAST_PERFORMANCE_VALUE"  schema="dbo" catalog="WebForTheJobSafety" mutable="false">
+        <meta attribute="friendlyName" inherit="false">ManagingCompaniesLastPerformanceValue</meta>
+        <id name="assetCode" type="int">
+            <column name="ASSET_CODE" />
+                   <generator class="identity" /> 
+            </id>
+            <property name="mgcpvDesc" type="string">
+                <column name="MGCPV_DESC" length="50" />
+            </property>
+            <one-to-one name="managingCompanies" class="com.safetyjoblet.ManagingCompanies"></one-to-one>
+  
+      </class>
+</hibernate-mapping>

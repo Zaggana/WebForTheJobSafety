@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 16, 2014 6:10:00 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.safetyjoblet.InspectionAuditKinds" table="INSPECTION_AUDIT_KINDS" schema="dbo" catalog="WebForTheJobSafety">
+        <meta attribute="friendlyName" inherit="false">InspectionAuditKinds</meta>
+        <cache usage="read-write"/>
+        <id name="inadkCode" type="int">
+            <meta attribute="friendlyName" inherit="false">InadkCode</meta>
+            <meta attribute="index" inherit="false">1</meta>
+            <column name="INADK_CODE" />
+            <generator class="identity" />
+        </id>
+        <property name="inadkDesc" type="string">
+            <meta attribute="friendlyName" inherit="false">InadkDesc</meta>
+            <meta attribute="index" inherit="false">2</meta>
+            <column name="INADK_DESC" length="50" not-null="true" />
+        </property>
+        <set name="inspectionAuditDescriptionses" table="INSPECTION_AUDIT_DESCRIPTIONS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="INADK_CODE" />
+            </key>
+            <one-to-many class="com.safetyjoblet.InspectionAuditDescriptions" />
+        </set>
+        <set name="inspectionsAuditses" table="INSPECTIONS_AUDITS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="INADK_CODE" />
+            </key>
+            <one-to-many class="com.safetyjoblet.InspectionsAudits" />
+        </set>
+    </class>
+</hibernate-mapping>

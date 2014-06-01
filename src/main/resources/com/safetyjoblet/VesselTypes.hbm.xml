@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 16, 2014 6:10:00 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.safetyjoblet.VesselTypes" table="VESSEL_TYPES" schema="dbo" catalog="WebForTheJobSafety">
+        <meta attribute="friendlyName" inherit="false">VesselTypes</meta>
+        <cache usage="read-write"/>
+        <id name="vstpCode" type="int">
+            <meta attribute="friendlyName" inherit="false">VstpCode</meta>
+            <meta attribute="index" inherit="false">1</meta>
+            <column name="VSTP_CODE" />
+            <generator class="identity" />
+        </id>
+        <property name="vstpDesc" type="string">
+            <meta attribute="friendlyName" inherit="false">VstpDesc</meta>
+            <meta attribute="index" inherit="false">2</meta>
+            <column name="VSTP_DESC" length="50" not-null="true" />
+        </property>
+        <set name="vesselses" table="VESSELS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="VSTP_CODE" not-null="true" />
+            </key>
+            <one-to-many class="com.safetyjoblet.Vessels" />
+        </set>
+    </class>
+</hibernate-mapping>

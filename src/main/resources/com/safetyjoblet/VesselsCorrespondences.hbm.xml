@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 16, 2014 6:10:00 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.safetyjoblet.VesselsCorrespondences" table="VESSELS_CORRESPONDENCES" schema="dbo" catalog="WebForTheJobSafety">
+        <meta attribute="friendlyName" inherit="false">VesselsCorrespondences</meta>
+        <id name="vscrCode" type="int">
+            <meta attribute="friendlyName" inherit="false">VscrCode</meta>
+            <meta attribute="index" inherit="false">1</meta>
+            <column name="VSCR_CODE" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="vessels" class="com.safetyjoblet.Vessels" fetch="select">
+            <meta attribute="friendlyName" inherit="false">Vessels</meta>
+            <meta attribute="index" inherit="false">2</meta>
+            <column name="ASSET_CODE" not-null="true" />
+        </many-to-one>
+        <many-to-one name="correspondenceTypes" class="com.safetyjoblet.CorrespondenceTypes" fetch="select">
+            <meta attribute="friendlyName" inherit="false">CorrespondenceTypes</meta>
+            <meta attribute="index" inherit="false">3</meta>
+            <column name="CRTP_CODE" not-null="true" />
+        </many-to-one>
+        <many-to-one name="correspondenceCategories" class="com.safetyjoblet.CorrespondenceCategories" fetch="select">
+            <meta attribute="friendlyName" inherit="false">CorrespondenceCategories</meta>
+            <meta attribute="index" inherit="false">4</meta>
+            <column name="CRCT_CODE" not-null="true" />
+        </many-to-one>
+        <many-to-one name="correspondenceDirections" class="com.safetyjoblet.CorrespondenceDirections" fetch="select">
+            <meta attribute="friendlyName" inherit="false">CorrespondenceDirections</meta>
+            <meta attribute="index" inherit="false">5</meta>
+            <column name="CRDR_CODE" not-null="true" />
+        </many-to-one>
+        <property name="vscrDate" type="timestamp">
+            <meta attribute="friendlyName" inherit="false">VscrDate</meta>
+            <meta attribute="index" inherit="false">6</meta>
+            <column name="VSCR_DATE" length="23" not-null="true" />
+        </property>
+        <property name="vscrDesc" type="string">
+            <meta attribute="friendlyName" inherit="false">VscrDesc</meta>
+            <meta attribute="index" inherit="false">7</meta>
+            <column name="VSCR_DESC" not-null="true" />
+        </property>
+        <property name="vscrConfirmation" type="java.lang.Boolean">
+            <meta attribute="friendlyName" inherit="false">VscrConfirmation</meta>
+            <meta attribute="index" inherit="false">8</meta>
+            <column name="VSCR_CONFIRMATION" />
+        </property>
+        <property name="vscrNumber" type="string">
+            <meta attribute="friendlyName" inherit="false">VscrNumber</meta>
+            <meta attribute="index" inherit="false">9</meta>
+            <column name="VSCR_NUMBER" length="50" not-null="true" />
+        </property>
+        <set name="vesselsCorrespondencesAttachmentses" table="VESSELS_CORRESPONDENCES_ATTACHMENTS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="VSCR_CODE" not-null="true" />
+            </key>
+            <one-to-many class="com.safetyjoblet.VesselsCorrespondencesAttachments" />
+        </set>
+    </class>
+</hibernate-mapping>

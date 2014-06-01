@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+ <session-factory>
+  <property name="hibernate.dialect">org.hibernate.dialect.SQLServer2008Dialect</property>
+  <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+  <property name="hibernate.connection.password">sa</property>
+  <property name="hibernate.connection.url">jdbc:sqlserver://localhost:1433;databaseName=WebForTheJobSafety</property>
+  <property name="hibernate.connection.username">sa</property>
+  <mapping class="com.safetyjoblet.Assets"/>
+  <mapping class="com.safetyjoblet.InspectionsAudits"/>
+  <mapping class="com.safetyjoblet.ManagingCompanies"/>
+  <mapping class="com.safetyjoblet.OwnerCompanies"/>
+  <mapping class="com.safetyjoblet.Vessels"/>
+  <mapping class="com.safetyjoblet.AuthoritiesCountries"/>
+  <mapping class="com.safetyjoblet.VesselTypes"/>
+  <mapping class="com.safetyjoblet.VesselsRiskProfileHistory"/>
+  <mapping class="com.safetyjoblet.VesselsCorrespondences"/>
+  <mapping class="com.safetyjoblet.VesselsRiskProfileValues"/>
+  <mapping class="com.safetyjoblet.ManagingCompaniesPerformanceHistory"/>
+  <mapping class="com.safetyjoblet.ManagingCompaniesPerformanceValues"/>
+  <mapping class="com.safetyjoblet.InspectionAuditDescriptions"/>
+  <mapping class="com.safetyjoblet.InspectionAuditKinds"/>
+  <mapping class="com.safetyjoblet.InspectionAuditTypes"/>
+  <mapping class="com.safetyjoblet.CorrespondenceCategories"/>  
+  <mapping class="com.safetyjoblet.CorrespondenceDirections"/>  
+  <mapping class="com.safetyjoblet.CorrespondenceTypes"/>
+  <mapping class="com.safetyjoblet.VesselsCorrespondencesAttachments"/>
+  <mapping class="com.safetyjoblet.InspectionsAuditsAttachments"/>
+  <mapping class="com.safetyjoblet.InspectionsAuditsDeficiencies"/>  
+  <mapping class="com.safetyjoblet.InspectionsAuditsDeficienciesActionValues"/>
+  <mapping class="com.safetyjoblet.Ports"/>
+  <mapping class="com.safetyjoblet.ManagingCompaniesLastPerformanceValue"/>
+ </session-factory>
+</hibernate-configuration>

@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 16, 2014 6:10:00 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.safetyjoblet.InspectionsAuditsDeficiencies" table="INSPECTIONS_AUDITS_DEFICIENCIES" schema="dbo" catalog="WebForTheJobSafety">
+        <meta attribute="friendlyName" inherit="false">InspectionsAuditsDeficiencies</meta>
+        <id name="inaddfCode" type="int">
+            <meta attribute="friendlyName" inherit="false">InaddfCode</meta>
+            <meta attribute="index" inherit="false">1</meta>
+            <column name="INADDF_CODE" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="inspectionsAudits" class="com.safetyjoblet.InspectionsAudits" fetch="select">
+            <meta attribute="friendlyName" inherit="false">InspectionsAudits</meta>
+            <meta attribute="index" inherit="false">2</meta>
+            <column name="INAD_CODE" not-null="true" />
+        </many-to-one>
+        <many-to-one name="inspectionsAuditsDeficienciesActionValues" class="com.safetyjoblet.InspectionsAuditsDeficienciesActionValues" fetch="select">
+            <meta attribute="friendlyName" inherit="false">InspectionsAuditsDeficienciesActionValues</meta>
+            <meta attribute="index" inherit="false">3</meta>
+            <column name="INADDFAV_CODE" />
+        </many-to-one>
+        <property name="inaddfNumber" type="string">
+            <meta attribute="friendlyName" inherit="false">InaddfNumber</meta>
+            <meta attribute="index" inherit="false">4</meta>
+            <column name="INADDF_NUMBER" length="50" />
+        </property>
+        <property name="inaddfId" type="string">
+            <meta attribute="friendlyName" inherit="false">InaddfId</meta>
+            <meta attribute="index" inherit="false">5</meta>
+            <column name="INADDF_ID" length="50" />
+        </property>
+        <property name="inaddfDesc" type="string">
+            <meta attribute="friendlyName" inherit="false">InaddfDesc</meta>
+            <meta attribute="index" inherit="false">6</meta>
+            <column name="INADDF_DESC" length="50" />
+        </property>
+        <property name="inaddfDetention" type="java.lang.Boolean">
+            <meta attribute="friendlyName" inherit="false">InaddfDetention</meta>
+            <meta attribute="index" inherit="false">7</meta>
+            <column name="INADDF_DETENTION" />
+        </property>
+        <property name="inaddfInspectorReasoning" type="string">
+            <meta attribute="friendlyName" inherit="false">InaddfInspectorReasoning</meta>
+            <meta attribute="index" inherit="false">8</meta>
+            <column name="INADDF_INSPECTOR_REASONING" />
+        </property>
+        <property name="inaddfMastersExplanation" type="string">
+            <meta attribute="friendlyName" inherit="false">InaddfMastersExplanation</meta>
+            <meta attribute="index" inherit="false">9</meta>
+            <column name="INADDF_MASTERS_EXPLANATION" />
+        </property>
+        <property name="inaddfCorrectiveActions" type="string">
+            <meta attribute="friendlyName" inherit="false">InaddfCorrectiveActions</meta>
+            <meta attribute="index" inherit="false">10</meta>
+            <column name="INADDF_CORRECTIVE_ACTIONS" />
+        </property>
+        <property name="inaddfPreventiveActions" type="string">
+            <meta attribute="friendlyName" inherit="false">InaddfPreventiveActions</meta>
+            <meta attribute="index" inherit="false">11</meta>
+            <column name="INADDF_PREVENTIVE_ACTIONS" />
+        </property>
+        <property name="inaddfDateCleared" type="timestamp">
+            <meta attribute="friendlyName" inherit="false">InaddfDateCleared</meta>
+            <meta attribute="index" inherit="false">12</meta>
+            <column name="INADDF_DATE_CLEARED" length="23" />
+        </property>
+    </class>
+</hibernate-mapping>
