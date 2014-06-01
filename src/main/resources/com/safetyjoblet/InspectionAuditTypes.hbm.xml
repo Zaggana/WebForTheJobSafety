@@ -5,6 +5,7 @@
 <hibernate-mapping>
     <class name="com.safetyjoblet.InspectionAuditTypes" table="INSPECTION_AUDIT_TYPES" schema="dbo" catalog="WebForTheJobSafety">
         <meta attribute="friendlyName" inherit="false">InspectionAuditTypes</meta>
+        <cache usage="read-write"/>
         <id name="inadtCode" type="int">
             <meta attribute="friendlyName" inherit="false">InadtCode</meta>
             <meta attribute="index" inherit="false">1</meta>

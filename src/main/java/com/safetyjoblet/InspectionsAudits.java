@@ -36,7 +36,7 @@ public class InspectionsAudits extends AbstractHibernateEntity {
     private AuthoritiesCountries authoritiesCountriesByAthcntCodeAuthority;
     @ManyToOne(targetEntity = InspectionAuditTypes.class)
     private InspectionAuditTypes inspectionAuditTypes;
-    private int inadId;
+    private Integer inadId = null;
     @NotNull
     private Date inadDate;
     private String inadObservations;
@@ -82,6 +82,8 @@ public class InspectionsAudits extends AbstractHibernateEntity {
     public void setAuthoritiesCountriesByAthcntCodeCountry(
             AuthoritiesCountries authoritiesCountriesByAthcntCodeCountry) {
         this.authoritiesCountriesByAthcntCodeCountry = authoritiesCountriesByAthcntCodeCountry;
+        setPorts(null);
+        setDirty("authoritiesCountriesByAthcntCodeCountry");
     }
 
     public InspectionAuditKinds getInspectionAuditKinds() {
@@ -120,7 +122,7 @@ public class InspectionsAudits extends AbstractHibernateEntity {
         this.inspectionAuditTypes = inspectionAuditTypes;
     }
 
-    public int getInadId() {
+    public Integer getInadId() {
         return this.inadId;
     }
 

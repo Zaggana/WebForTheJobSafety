@@ -5,6 +5,7 @@
 <hibernate-mapping>
     <class name="com.safetyjoblet.Ports" table="PORTS" schema="dbo" catalog="WebForTheJobSafety">
         <meta attribute="friendlyName" inherit="false">Ports</meta>
+        <cache usage="read-write"/>
         <id name="portCode" type="int">
             <meta attribute="friendlyName" inherit="false">PortCode</meta>
             <meta attribute="index" inherit="false">1</meta>

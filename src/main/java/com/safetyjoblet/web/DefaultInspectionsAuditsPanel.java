@@ -2,6 +2,7 @@ package com.safetyjoblet.web;
 
 import com.safetyjoblet.InspectionAuditDescriptions;
 import com.safetyjoblet.InspectionsAudits;
+import com.safetyjoblet.Ports;
 import com.safetyjoblet.Vessels;
 import org.web4thejob.context.ContextUtil;
 import org.web4thejob.orm.Path;
@@ -64,6 +65,21 @@ public class DefaultInspectionsAuditsPanel extends DefaultMutableEntityViewPanel
                     EntityDropdownBox dropdownBox = (EntityDropdownBox) getBoundComponent(ContextUtil
                             .getMRS().getPropertyPath(InspectionsAudits.class,
                                     new Path("inspectionAuditDescriptions")));
+                    dropdownBox.setLookupQuery(query);
+                    dropdownBox.reset();
+
+                }
+
+                if (args != null && args[0].equals("authoritiesCountriesByAthcntCodeCountry")) {
+
+                    Query query = ContextUtil.getEntityFactory().buildQuery(Ports.class);
+                    query.addCriterion(new Path("authoritiesCountries"), Condition.EQ, ((InspectionsAudits) getTargetEntity()).getAuthoritiesCountriesByAthcntCodeCountry());
+                    query.addOrderBy(new Path("portDesc"));
+
+                    EntityDropdownBox dropdownBox = (EntityDropdownBox) getBoundComponent(ContextUtil
+                            .getMRS().getPropertyPath(InspectionsAudits.class,
+                                    new Path("ports")));
+
                     dropdownBox.setLookupQuery(query);
                     dropdownBox.reset();
 

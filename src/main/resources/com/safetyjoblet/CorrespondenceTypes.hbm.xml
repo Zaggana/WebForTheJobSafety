@@ -5,6 +5,7 @@
 <hibernate-mapping>
     <class name="com.safetyjoblet.CorrespondenceTypes" table="CORRESPONDENCE_TYPES" schema="dbo" catalog="WebForTheJobSafety">
         <meta attribute="friendlyName" inherit="false">CorrespondenceTypes</meta>
+        <cache usage="read-write"/>
         <id name="crtpCode" type="int">
             <meta attribute="friendlyName" inherit="false">CrtpCode</meta>
             <meta attribute="index" inherit="false">1</meta>
